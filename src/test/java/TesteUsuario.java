@@ -117,7 +117,7 @@ public class TesteUsuario {
 
     @Test
     public void deveEditarDadosDeUsuario() {
-        /*
+        /**
          * TC023 (RF002)
          * Lucas Gomes
          * 
@@ -139,6 +139,35 @@ public class TesteUsuario {
         this.usuarioRepositorio.atualizar(indiceUsuario, usuarioAtualizado);
 
         Assertions.assertEquals(this.usuarioRepositorio.obterUsuario(indiceUsuario), usuarioAtualizado);
+    }
+
+    @Test
+    public void deveEditarDadosDeUsuarioEmail() {
+        /**
+         * TC024 (RF002)
+         * Lucas Gomes
+         * 
+         * O sistema deverá ser capaz de editar os dados de um determinado usuário, atualizando
+         * também o e-mail do usuário ou o número de celular.
+        */
+
+        Usuario usuarioOriginal = this.criarUsuario();
+        this.usuarioRepositorio.inserir(usuarioOriginal);
+
+        String novoNome  = "John eh o Cara";
+        String novoEmail = "johndoeehocara@example.com";
+
+        Usuario usuarioAtualizado = this.criarUsuario();
+        usuarioAtualizado.setNome(novoNome);
+        usuarioAtualizado.setEmail(novoEmail);
+
+        if (ValidadorService.validarEmail(novoEmail)) {
+
+            int indiceUsuario = this.usuarioRepositorio.obterIndice(usuarioOriginal);
+            this.usuarioRepositorio.atualizar(indiceUsuario, usuarioAtualizado);
+
+            Assertions.assertEquals(this.usuarioRepositorio.obterUsuario(indiceUsuario), usuarioAtualizado);
+        }
     }
 
     private Usuario criarUsuario() {
