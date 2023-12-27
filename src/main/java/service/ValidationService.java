@@ -1,4 +1,6 @@
-public class ValidadorService {
+package service;
+
+public class ValidationService {
 
   public static boolean validarEmail(String email) {
     return true;

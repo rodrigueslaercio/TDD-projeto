@@ -2,6 +2,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import service.ValidationService;
+
 public class TesteUsuario {
     Usuario usuario;
     UsuarioRepositorio usuarioRepositorio;
@@ -161,7 +163,7 @@ public class TesteUsuario {
         usuarioAtualizado.setNome(novoNome);
         usuarioAtualizado.setEmail(novoEmail);
 
-        if (ValidadorService.validarEmail(novoEmail)) {
+        if (ValidationService.validarEmail(novoEmail)) {
 
             int indiceUsuario = this.usuarioRepositorio.obterIndice(usuarioOriginal);
             this.usuarioRepositorio.atualizar(indiceUsuario, usuarioAtualizado);
