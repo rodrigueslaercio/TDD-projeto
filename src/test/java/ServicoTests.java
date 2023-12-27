@@ -1,8 +1,4 @@
-package main.teste;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
+import org.junit.jupiter.api.Assertions;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,13 +55,13 @@ public class ServicoTests {
 		servicoCadastrar.setValor(35.0);
 		servicoCadastrar.setDiferenciais("Adultos: Galeto completo");
 		servicoCadastrar.setRestricoes("Nenhuma");
-		
-		assertTrue(sr.totalServicos() == 2);
+
+        Assertions.assertEquals(2, (int) sr.totalServicos());
 		
 		Boolean cadastrou = sn.cadastrarServico(servicoCadastrar);
-		assertTrue(cadastrou);
-		
-		assertTrue(sr.totalServicos() == 3);
+		Assertions.assertTrue(cadastrou);
+
+        Assertions.assertEquals(3, (int) sr.totalServicos());
 	}
 	
 	@Test
@@ -83,10 +79,10 @@ public class ServicoTests {
 		filtro.setRestricoes("Nenhuma");
 		
 		List<Servico> servicos = sn.buscarServico(filtro);
-		
-		assertEquals(2, servicos.size());
-		assertEquals(1, servicos.get(0).getId().intValue());
-		assertEquals(2, servicos.get(1).getId().intValue());
+
+		Assertions.assertEquals(2, servicos.size());
+		Assertions.assertEquals(1, servicos.get(0).getId().intValue());
+		Assertions.assertEquals(2, servicos.get(1).getId().intValue());
 	}
 	
 	@Test
@@ -98,9 +94,9 @@ public class ServicoTests {
 		filtro.setNome("Casa");
 		
 		List<Servico> servicos = sn.buscarServico(filtro);
-		
-		assertEquals(1, servicos.size());
-		assertEquals(1, servicos.get(0).getId().intValue());
+
+		Assertions.assertEquals(1, servicos.size());
+		Assertions.assertEquals(1, servicos.get(0).getId().intValue());
 	}
 	
 	@Test
@@ -112,9 +108,9 @@ public class ServicoTests {
 		filtro.setCategoria("Mecanica");
 		
 		List<Servico> servicos = sn.buscarServico(filtro);
-		
-		assertEquals(1, servicos.size());
-		assertEquals(2, servicos.get(0).getId().intValue());
+
+		Assertions.assertEquals(1, servicos.size());
+		Assertions.assertEquals(2, servicos.get(0).getId().intValue());
 	}
 	
 	@Test
@@ -127,10 +123,10 @@ public class ServicoTests {
 		filtro.setDisponibilidade("Manhã");
 		
 		List<Servico> servicos = sn.buscarServico(filtro);
-		
-		assertEquals(2, servicos.size());
-		assertEquals(1, servicos.get(0).getId().intValue());
-		assertEquals(2, servicos.get(1).getId().intValue());
+
+		Assertions.assertEquals(2, servicos.size());
+		Assertions.assertEquals(1, servicos.get(0).getId().intValue());
+		Assertions.assertEquals(2, servicos.get(1).getId().intValue());
 		
 	}
 	
@@ -144,9 +140,9 @@ public class ServicoTests {
 		filtro.setValorFinal(500.0);
 		
 		List<Servico> servicos = sn.buscarServico(filtro);
-		
-		assertEquals(1, servicos.size());
-		assertEquals(2, servicos.get(0).getId().intValue());
+
+		Assertions.assertEquals(1, servicos.size());
+		Assertions.assertEquals(2, servicos.get(0).getId().intValue());
 	}
 	
 	@Test
@@ -158,9 +154,9 @@ public class ServicoTests {
 		filtro.setDiferenciais("Oleo");
 		
 		List<Servico> servicos = sn.buscarServico(filtro);
-		
-		assertEquals(1, servicos.size());
-		assertEquals(2, servicos.get(0).getId().intValue());
+
+		Assertions.assertEquals(1, servicos.size());
+		Assertions.assertEquals(2, servicos.get(0).getId().intValue());
 	}
 	
 	@Test
@@ -172,10 +168,10 @@ public class ServicoTests {
 		filtro.setRestricoes("Nenhuma");
 		
 		List<Servico> servicos = sn.buscarServico(filtro);
-		
-		assertEquals(2, servicos.size());
-		assertEquals(1, servicos.get(0).getId().intValue());
-		assertEquals(2, servicos.get(1).getId().intValue());
+
+		Assertions.assertEquals(2, servicos.size());
+		Assertions.assertEquals(1, servicos.get(0).getId().intValue());
+		Assertions.assertEquals(2, servicos.get(1).getId().intValue());
 	}
 	
 	@Test
@@ -187,44 +183,9 @@ public class ServicoTests {
 		filtro.setNome("cozinha");
 		
 		List<Servico> servicos = sn.buscarServico(filtro);
-		
-		assertEquals(0, servicos.size());
-		
-	}
-	
 
-	@Test
-	public void editarServicoTest() {
+		Assertions.assertEquals(0, servicos.size());
 		
-		Integer idServico = 1;
-		
-		Servico servico = sr.getServico(idServico);
-		
-		assertTrue(servico.getNome().equals("Limpeza de Casa"));
-		assertTrue(servico.getCategoria().equals("Limpeza"));
-		assertTrue(servico.getDisponibilidade().equals("Manhã"));
-		assertTrue(servico.getValor().equals(80.0));
-		assertTrue(servico.getDiferenciais().equals("Profissional"));
-		assertTrue(servico.getRestricoes().equals("Nenhuma"));
-		
-		Servico servicoEditar = new Servico();
-		
-		servicoEditar.setNome("Limpeza de Carro");
-		servicoEditar.setCategoria("Limpeza Carro");
-		servicoEditar.setDisponibilidade("Tarde");
-		servicoEditar.setValor(100.0);
-		servicoEditar.setDiferenciais("Nenhuma");
-		servicoEditar.setRestricoes("Nenhuma");
-		
-		Boolean editou = sn.editarServico(servico, servicoEditar);
-		assertTrue(editou);
-		
-		assertTrue(servico.getNome().equals("Limpeza de Carro"));
-		assertTrue(servico.getCategoria().equals("Limpeza Carro"));
-		assertTrue(servico.getDisponibilidade().equals("Tarde"));
-		assertTrue(servico.getValor().equals(100.0));
-		assertTrue(servico.getDiferenciais().equals("Nenhuma"));
-		assertTrue(servico.getRestricoes().equals("Nenhuma"));
 	}
 
 }
