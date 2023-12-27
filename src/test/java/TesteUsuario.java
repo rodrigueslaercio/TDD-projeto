@@ -2,6 +2,11 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import entidades.Tipo;
+import entidades.Usuario;
+import negocio.UsuarioNegocio;
+import repositorio.UsuarioRepositorio;
+import service.AuthenticationService;
 import service.ValidationService;
 
 public class TesteUsuario {
@@ -93,7 +98,6 @@ public class TesteUsuario {
         Assertions.assertNull(usuarioNegocio.cadastrar(usuario2));
     }
 
-
     @Test
     public void cadastroSenhaMenor8CharTeste() {
         /*
@@ -115,7 +119,6 @@ public class TesteUsuario {
 
         Assertions.assertNull(usuarioNegocio.cadastrar(usuario));
     }
-
 
     @Test
     public void deveEditarDadosDeUsuario() {
@@ -170,6 +173,27 @@ public class TesteUsuario {
 
             Assertions.assertEquals(this.usuarioRepositorio.obterUsuario(indiceUsuario), usuarioAtualizado);
         }
+    }
+
+    @Test
+    public void deveEfetuarLogin() {
+        /**
+         * TC025 (RF005)
+         * Lucas Gomes
+         * 
+         * O usuário deverá ser capaz de efetuar login no sistema utilizando E-Mail e Senha.
+        */
+
+        Usuario usuarioCadastrado = this.criarUsuario();
+        this.usuarioRepositorio.inserir(usuarioCadastrado);
+
+        String emailLogin = "markdoe@exampe.com";
+        String senhaLogin = "Markdoe123@";
+
+        AuthenticationService authService = new AuthenticationService(this.usuarioRepositorio);
+        boolean authenticateResult = authService.authenticate(emailLogin, senhaLogin);
+
+        Assertions.assertTrue(authenticateResult);
     }
 
     private Usuario criarUsuario() {

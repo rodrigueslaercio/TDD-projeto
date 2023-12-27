@@ -1,13 +1,13 @@
-package main.java.negocio;
+package negocio;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import main.java.entidades.AvaliacaoServico;
-import main.java.entidades.FiltroBuscaServico;
-import main.java.entidades.Servico;
-import main.java.repositorio.ServicoRepositorio;
+import entidades.AvaliacaoServico;
+import entidades.FiltroBuscaServico;
+import entidades.Servico;
+import repositorio.ServicoRepositorio;
 
 public class ServicoNegocio {
 	

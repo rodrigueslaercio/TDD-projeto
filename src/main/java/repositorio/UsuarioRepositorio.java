@@ -1,5 +1,8 @@
+package repositorio;
 import java.util.ArrayList;
 import java.util.List;
+
+import entidades.Usuario;
 
 public class UsuarioRepositorio {
 
@@ -28,6 +31,15 @@ public class UsuarioRepositorio {
     public Usuario obterUsuario(int indice) {
 
         return this.usuarios.get(indice);
+    }
+
+    public Usuario findByEmail(String email) {
+
+        for (int counter = 0; counter < this.usuarios.size(); counter++)
+            if (this.usuarios.get(counter).getEmail().equals(email))
+                return this.usuarios.get(counter);
+        
+        return null;
     }
 
     public boolean verificarCpf(String cpf) {

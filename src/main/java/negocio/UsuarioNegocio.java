@@ -1,5 +1,10 @@
+package negocio;
 import java.lang.reflect.Field;
 import java.util.Objects;
+
+import entidades.Usuario;
+import entidades.Tipo;
+import repositorio.UsuarioRepositorio;
 
 public class UsuarioNegocio {
 
