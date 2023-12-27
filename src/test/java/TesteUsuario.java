@@ -115,6 +115,32 @@ public class TesteUsuario {
     }
 
 
+    @Test
+    public void deveEditarDadosDeUsuario() {
+        /*
+         * TC023 (RF002)
+         * Lucas Gomes
+         * 
+         * O sistema deverá ser capaz de editar os dados de um determinado usuário, sem editar
+         * e-mail e número de celular.
+        */
+
+        Usuario usuarioOriginal = this.criarUsuario();
+        this.usuarioRepositorio.inserir(usuarioOriginal);
+
+        String novoNome      = "John eh um Cara";
+        String novoSobrenome = "Desenrolado";
+
+        Usuario usuarioAtualizado = this.criarUsuario();
+        usuarioAtualizado.setNome(novoNome);
+        usuarioAtualizado.setSobrenome(novoSobrenome);
+
+        int indiceUsuario = this.usuarioRepositorio.obterIndice(usuarioOriginal);
+        this.usuarioRepositorio.atualizar(indiceUsuario, usuarioAtualizado);
+
+        Assertions.assertEquals(this.usuarioRepositorio.obterUsuario(indiceUsuario), usuarioAtualizado);
+    }
+
     private Usuario criarUsuario() {
         
         Usuario usuario = new Usuario();
