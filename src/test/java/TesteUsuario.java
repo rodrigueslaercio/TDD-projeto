@@ -114,4 +114,21 @@ public class TesteUsuario {
         Assertions.assertNull(usuarioNegocio.cadastrar(usuario));
     }
 
+
+    private Usuario criarUsuario() {
+        
+        Usuario usuario = new Usuario();
+
+        usuario.setNome("Mark");
+        usuario.setSobrenome("Doe");
+        usuario.setSexo("M");
+        usuario.setCpf("11111111111");
+        usuario.setDataNascimento("01/01/2001");
+        usuario.setEndereco("51011-00 Avenida Boa Viagem, Pina, Recife-PE");
+        usuario.setEmail("markdoe@exampe.com");
+        usuario.setSenha("Markdoe123@");
+
+        return usuario;
+   }
+
 }
