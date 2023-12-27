@@ -188,5 +188,46 @@ public class ServicoTests {
 		
 	}
 
+	@Test
+	public void avaliarServicoTest() {
+		Integer idUsuario = 2;
+		Integer idServico = 1;
+		
+		AvaliacaoServico avaliacao = new AvaliacaoServico();
+		avaliacao.setRate(4);
+		avaliacao.setComentario("Serviço Bom");
+		avaliacao.setIdUsuario(idUsuario);
+		
+		Servico servicoAvaliar = sr.getServico(idServico);
+		
+		Assertions.assertTrue(servicoAvaliar.getAvaliacoes().size() == 0);
+		
+		Boolean avaliado = sn.avaliarServico(servicoAvaliar, avaliacao);
+		
+		Assertions.assertTrue(avaliado);
+		
+		Assertions.assertTrue(servicoAvaliar.getAvaliacoes().size() == 1);
+	}
+	
+	@Test
+	public void excluirServicoTest() {
+		
+		Integer idServico = 1;
+		
+		List<Servico> servicosUsuarioAntes = sr.listarServicos();
+		
+		Assertions.assertEquals(2, servicosUsuarioAntes.size());
+		
+		Servico servicoDeletar = sr.getServico(idServico);
+		
+		Boolean deletou = sr.rmvServico(servicoDeletar);
+		
+		Assertions.assertTrue(deletou);
+		
+		List<Servico> servicoUsuarioDepois = sr.listarServicos();
+		
+		Assertions.assertEquals(1, servicoUsuarioDepois.size());
+	}
+
 }
 
