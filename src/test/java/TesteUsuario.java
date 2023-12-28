@@ -10,9 +10,9 @@ import service.AuthenticationService;
 import service.ValidationService;
 
 public class TesteUsuario {
-    Usuario usuario;
-    UsuarioRepositorio usuarioRepositorio;
-    UsuarioNegocio usuarioNegocio;
+    private Usuario usuario;
+    private UsuarioRepositorio usuarioRepositorio;
+    private UsuarioNegocio usuarioNegocio;
 
     @BeforeEach
     public void init() {
@@ -31,7 +31,6 @@ public class TesteUsuario {
         usuarioRepositorio = new UsuarioRepositorio();
         usuarioNegocio = new UsuarioNegocio(usuarioRepositorio);
     }
-
 
     @Test
     public void cadastrarUsuarioCorretoTest() {
@@ -191,9 +190,9 @@ public class TesteUsuario {
         String senhaLogin = "Johndoe@123";
 
         AuthenticationService authService = new AuthenticationService(this.usuarioRepositorio);
-        boolean authenticateResult = authService.authenticate(emailLogin, senhaLogin);
+        boolean authenticationResult = authService.authenticate(emailLogin, senhaLogin);
 
-        Assertions.assertTrue(authenticateResult);
+        Assertions.assertTrue(authenticationResult);
     }
 
     @Test
