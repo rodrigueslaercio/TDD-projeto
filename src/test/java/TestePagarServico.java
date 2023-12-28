@@ -60,4 +60,21 @@ public class TestePagarServico {
         Assertions.assertTrue(pagou);
 
     }
+
+    @Test
+    public void pagarCartaoTest() {
+        PagamentoCartao pagamentoCartao = new PagamentoCartao();
+        Servico servico = sr.getServico(1);
+
+        pagamentoCartao.setTitular("John Doe");
+        pagamentoCartao.setNumero("1234 5678 9101 1213");
+        pagamentoCartao.setCodigoSeguranca(321);
+        pagamentoCartao.setValidade("01/24");
+        pagamentoCartao.setValor(250.0);
+        pagamentoCartao.setParcelas(2);
+
+        boolean pagou = pn.realizarPagamentoCartao(pagamentoCartao, servico, usuario);
+
+        Assertions.assertTrue(pagou);
+    }
 }

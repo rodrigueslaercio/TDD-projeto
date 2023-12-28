@@ -7,7 +7,6 @@ public class PagamentoNegocio {
     }
 
     public boolean realizarPagamento(PagamentoPix pix, Servico servico, Usuario usuario) {
-
         if (pix != null) {
             pr = new PagamentoRepositorio();
 
@@ -16,6 +15,23 @@ public class PagamentoNegocio {
                 pix.setServico(servico);
 
                 pr.inserirPagamentoPix(pix);
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean realizarPagamentoCartao(PagamentoCartao cartao, Servico servico, Usuario usuario) {
+        if (cartao != null) {
+            pr = new PagamentoRepositorio();
+
+            if (cartao.getValor().equals(servico.getValor())) {
+                cartao.setUsuario(usuario);
+                cartao.setServico(servico);
+
+                pr.inserirPagamentoCartao(cartao);
 
                 return true;
             }
