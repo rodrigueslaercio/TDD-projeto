@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestePagamentoPix {
+public class TestePagarServico {
     PagamentoNegocio pn;
     PagamentoRepositorio pr;
     ServicoRepositorio sr;
