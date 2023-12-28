@@ -13,7 +13,7 @@ public class Usuario {
 
     private String celular;
 
-    private Tipo tipo;
+    private TipoUsuario tipoUsuario;
 
     public String getNome() {
         return nome;
@@ -87,13 +87,11 @@ public class Usuario {
         this.celular = celular;
     }
 
-    public Tipo getTipo() {
-        return tipo;
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
     }
 
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
-
-
 }

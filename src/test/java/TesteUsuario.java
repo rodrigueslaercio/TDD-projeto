@@ -1,8 +1,8 @@
+import entidades.TipoUsuario;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import entidades.Tipo;
 import entidades.Usuario;
 import negocio.UsuarioNegocio;
 import repositorio.UsuarioRepositorio;
@@ -26,7 +26,7 @@ public class TesteUsuario {
         usuario.setEmail("johndoe@exampe.com");
         usuario.setSenha("Johndoe123@");
         usuario.setCelular("");
-        usuario.setTipo(Tipo.None);
+        usuario.setTipoUsuario(TipoUsuario.None);
 
         usuarioRepositorio = new UsuarioRepositorio();
         usuarioNegocio = new UsuarioNegocio(usuarioRepositorio);

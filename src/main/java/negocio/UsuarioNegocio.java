@@ -2,8 +2,8 @@ package negocio;
 import java.lang.reflect.Field;
 import java.util.Objects;
 
+import entidades.TipoUsuario;
 import entidades.Usuario;
-import entidades.Tipo;
 import repositorio.UsuarioRepositorio;
 
 public class UsuarioNegocio {
@@ -41,7 +41,7 @@ public class UsuarioNegocio {
             return null;
         }
 
-        usuario.setTipo(Tipo.Tomador);
+        usuario.setTipoUsuario(TipoUsuario.TomadorDeServicos);
         this.usuarioRepositorio.inserir(usuario);
         return  usuario;
     }
