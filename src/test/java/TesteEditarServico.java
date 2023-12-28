@@ -1,8 +1,5 @@
-import main.java.repositorio.ServicoRepositorio;
-import main.java.negocio.ServicoNegocio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import main.java.entidades.Servico;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -24,6 +21,7 @@ public class TesteEditarServico {
         servico.setValor(80.0);
         servico.setDiferenciais("Profissional");
         servico.setRestricoes("Nenhuma");
+        servico.setDescricao("Ofereço uma faxina simples");
 
         servicos.add(servico);
 
@@ -44,6 +42,7 @@ public class TesteEditarServico {
         servicoEditar.setValor(100.0);
         servicoEditar.setDiferenciais("Nenhuma");
         servicoEditar.setRestricoes("Nenhuma");
+        servicoEditar.setDescricao("Ofereço uma faxina completa");
 
         Boolean editou = sn.editarServico(servico, servicoEditar);
 

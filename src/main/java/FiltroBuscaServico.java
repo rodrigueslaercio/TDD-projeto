@@ -1,5 +1,3 @@
-package main.java.entidades;
-
 public class FiltroBuscaServico {
 	
 	private String nome;

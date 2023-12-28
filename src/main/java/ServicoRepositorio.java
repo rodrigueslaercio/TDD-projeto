@@ -1,10 +1,5 @@
-package main.java.repositorio;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import main.java.entidades.AvaliacaoServico;
-import main.java.entidades.Servico;
 
 public class ServicoRepositorio {
 	

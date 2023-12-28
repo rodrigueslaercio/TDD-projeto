@@ -1,5 +1,3 @@
-package main.java.entidades;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +10,9 @@ public class Servico {
 	private String disponibilidade;
 	private String restricoes;
 	private String diferenciais;
+
+	private String descricao;
+
 	private List<AvaliacaoServico> avaliacoes;
 	
 	public Servico() {
@@ -95,5 +96,12 @@ public class Servico {
 		}
 		return false;
 	}
-	
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 }
