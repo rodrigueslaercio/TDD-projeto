@@ -187,8 +187,8 @@ public class TesteUsuario {
         Usuario usuarioCadastrado = this.criarUsuario();
         this.usuarioRepositorio.inserir(usuarioCadastrado);
 
-        String emailLogin = "markdoe@exampe.com";
-        String senhaLogin = "Markdoe123@";
+        String emailLogin = "johndoe@example.com";
+        String senhaLogin = "Johndoe@123";
 
         AuthenticationService authService = new AuthenticationService(this.usuarioRepositorio);
         boolean authenticateResult = authService.authenticate(emailLogin, senhaLogin);
@@ -210,8 +210,8 @@ public class TesteUsuario {
         Usuario usuarioCadastrado = this.criarUsuario();
         this.usuarioRepositorio.inserir(usuarioCadastrado);
 
-        String emailInexistente = "markdoe2@exampe.com";
-        String senhaLogin = "Markdoe123@";
+        String emailInexistente = "john-doe@example.com";
+        String senhaLogin = "Johndoe@123";
 
         AuthenticationService authService = new AuthenticationService(this.usuarioRepositorio);
         boolean authenticationResult = authService.authenticate(emailInexistente, senhaLogin);
@@ -233,8 +233,8 @@ public class TesteUsuario {
         Usuario usuarioCadastrado = this.criarUsuario();
         this.usuarioRepositorio.inserir(usuarioCadastrado);
 
-        String emailLogin = "markdoe@exampe.com";
-        String senhaIncorreta = "MarkDOE123@";
+        String emailLogin = "johndoe@example.com";
+        String senhaIncorreta = "Johndoe@321";
 
         AuthenticationService authService = new AuthenticationService(this.usuarioRepositorio);
         boolean authenticationResult = authService.authenticate(emailLogin, senhaIncorreta);
@@ -246,16 +246,15 @@ public class TesteUsuario {
         
         Usuario usuario = new Usuario();
 
-        usuario.setNome("Mark");
+        usuario.setNome("John");
         usuario.setSobrenome("Doe");
-        usuario.setSexo("M");
+        usuario.setSexo("Masculino");
         usuario.setCpf("11111111111");
         usuario.setDataNascimento("01/01/2001");
         usuario.setEndereco("51011-00 Avenida Boa Viagem, Pina, Recife-PE");
-        usuario.setEmail("markdoe@exampe.com");
-        usuario.setSenha("Markdoe123@");
+        usuario.setEmail("johndoe@example.com");
+        usuario.setSenha("Johndoe@123");
 
         return usuario;
    }
-
 }
