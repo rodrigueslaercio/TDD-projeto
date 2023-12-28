@@ -2,6 +2,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import entidades.Tipo;
+import entidades.Usuario;
+import negocio.UsuarioNegocio;
+import repositorio.UsuarioRepositorio;
+import service.AuthenticationService;
+import service.ValidationService;
+
 public class TesteUsuario {
     Usuario usuario;
     UsuarioRepositorio usuarioRepositorio;
@@ -91,7 +98,6 @@ public class TesteUsuario {
         Assertions.assertNull(usuarioNegocio.cadastrar(usuario2));
     }
 
-
     @Test
     public void cadastroSenhaMenor8CharTeste() {
         /*
@@ -113,5 +119,97 @@ public class TesteUsuario {
 
         Assertions.assertNull(usuarioNegocio.cadastrar(usuario));
     }
+
+    @Test
+    public void deveEditarDadosDeUsuario() {
+        /**
+         * TC023 (RF002)
+         * Lucas Gomes
+         * 
+         * O sistema deverá ser capaz de editar os dados de um determinado usuário, sem editar
+         * e-mail e número de celular.
+        */
+
+        Usuario usuarioOriginal = this.criarUsuario();
+        this.usuarioRepositorio.inserir(usuarioOriginal);
+
+        String novoNome      = "John eh um Cara";
+        String novoSobrenome = "Desenrolado";
+
+        Usuario usuarioAtualizado = this.criarUsuario();
+        usuarioAtualizado.setNome(novoNome);
+        usuarioAtualizado.setSobrenome(novoSobrenome);
+
+        int indiceUsuario = this.usuarioRepositorio.obterIndice(usuarioOriginal);
+        this.usuarioRepositorio.atualizar(indiceUsuario, usuarioAtualizado);
+
+        Assertions.assertEquals(this.usuarioRepositorio.obterUsuario(indiceUsuario), usuarioAtualizado);
+    }
+
+    @Test
+    public void deveEditarDadosDeUsuarioEmail() {
+        /**
+         * TC024 (RF002)
+         * Lucas Gomes
+         * 
+         * O sistema deverá ser capaz de editar os dados de um determinado usuário, atualizando
+         * também o e-mail do usuário ou o número de celular.
+        */
+
+        Usuario usuarioOriginal = this.criarUsuario();
+        this.usuarioRepositorio.inserir(usuarioOriginal);
+
+        String novoNome  = "John eh o Cara";
+        String novoEmail = "johndoeehocara@example.com";
+
+        Usuario usuarioAtualizado = this.criarUsuario();
+        usuarioAtualizado.setNome(novoNome);
+        usuarioAtualizado.setEmail(novoEmail);
+
+        if (ValidationService.validarEmail(novoEmail)) {
+
+            int indiceUsuario = this.usuarioRepositorio.obterIndice(usuarioOriginal);
+            this.usuarioRepositorio.atualizar(indiceUsuario, usuarioAtualizado);
+
+            Assertions.assertEquals(this.usuarioRepositorio.obterUsuario(indiceUsuario), usuarioAtualizado);
+        }
+    }
+
+    @Test
+    public void deveEfetuarLogin() {
+        /**
+         * TC025 (RF005)
+         * Lucas Gomes
+         * 
+         * O usuário deverá ser capaz de efetuar login no sistema utilizando E-Mail e Senha.
+        */
+
+        Usuario usuarioCadastrado = this.criarUsuario();
+        this.usuarioRepositorio.inserir(usuarioCadastrado);
+
+        String emailLogin = "markdoe@exampe.com";
+        String senhaLogin = "Markdoe123@";
+
+        AuthenticationService authService = new AuthenticationService(this.usuarioRepositorio);
+        boolean authenticateResult = authService.authenticate(emailLogin, senhaLogin);
+
+        Assertions.assertTrue(authenticateResult);
+    }
+
+    private Usuario criarUsuario() {
+        
+        Usuario usuario = new Usuario();
+
+        usuario.setNome("Mark");
+        usuario.setSobrenome("Doe");
+        usuario.setSexo("M");
+        usuario.setCpf("11111111111");
+        usuario.setDataNascimento("01/01/2001");
+        usuario.setEndereco("51011-00 Avenida Boa Viagem, Pina, Recife-PE");
+        usuario.setEmail("markdoe@exampe.com");
+        usuario.setSenha("Markdoe123@");
+
+        return usuario;
+   }
 
 }

@@ -1,0 +1,54 @@
+package repositorio;
+import java.util.ArrayList;
+import java.util.List;
+
+import entidades.Usuario;
+
+public class UsuarioRepositorio {
+
+    private List<Usuario> usuarios = new ArrayList<>();
+
+    public void inserir(Usuario usuario) {
+        usuarios.add(usuario);
+    }
+
+    public int obterIndice(Usuario usuarioAlvo) {
+        
+        for (int counter = 0; counter < this.usuarios.size(); counter++) {
+            if (this.usuarios.get(counter).equals(usuarioAlvo)) {
+                return counter;
+            }
+        }
+
+        return -1;
+    }
+
+    public void atualizar(int indice, Usuario novoUsuario) {
+
+        this.usuarios.set(indice, novoUsuario);
+    }
+
+    public Usuario obterUsuario(int indice) {
+
+        return this.usuarios.get(indice);
+    }
+
+    public Usuario findByEmail(String email) {
+
+        for (int counter = 0; counter < this.usuarios.size(); counter++)
+            if (this.usuarios.get(counter).getEmail().equals(email))
+                return this.usuarios.get(counter);
+        
+        return null;
+    }
+
+    public boolean verificarCpf(String cpf) {
+        for(Usuario usuario : this.usuarios) {
+            if (usuario.getCpf().equals(cpf)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
