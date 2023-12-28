@@ -196,6 +196,29 @@ public class TesteUsuario {
         Assertions.assertTrue(authenticateResult);
     }
 
+    @Test
+    public void deveFalharAoEfetuarLoginPorEmailInexistente() {
+        /**
+         * TC026 (RF005)
+         * Lucas Gomes
+         *
+         * Este caso de teste simula uma tentativa fracassada de efetuar login, onde, no momento
+         * do login, o usuário informa um e-mail que não está armazenado no banco de dados do
+         * sistema.
+         */
+
+        Usuario usuarioCadastrado = this.criarUsuario();
+        this.usuarioRepositorio.inserir(usuarioCadastrado);
+
+        String emailInexistente = "markdoe2@exampe.com";
+        String senhaLogin = "Markdoe123@";
+
+        AuthenticationService authService = new AuthenticationService(this.usuarioRepositorio);
+        boolean authenticationResult = authService.authenticate(emailInexistente, senhaLogin);
+
+        Assertions.assertFalse(authenticationResult);
+    }
+
     private Usuario criarUsuario() {
         
         Usuario usuario = new Usuario();
