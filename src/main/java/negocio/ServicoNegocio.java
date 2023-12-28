@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import entidades.AvaliacaoServico;
-import entidades.FiltroBuscaServico;
-import entidades.Servico;
+import entidades.*;
 import repositorio.ServicoRepositorio;
 
 public class ServicoNegocio {
@@ -87,6 +85,14 @@ public class ServicoNegocio {
 	    return false;
 	}
 
+	public boolean removerServico(Servico servico, Usuario usuarioPrestador) {
+		if (servico.getPrestador().equals(usuarioPrestador)) {
+			return this.sr.rmvServico(servico);
+		}
+
+		return false;
+	}
+
 	private Boolean validateServico(Servico servico) {
 	    if (Objects.isNull(servico.getNome()) || servico.getNome().trim().isEmpty()) {
 	        return false;
@@ -95,9 +101,7 @@ public class ServicoNegocio {
 	    }
 	    return true;
 	}
-	
-	
-	
+
 	public Boolean avaliarServico(Servico servicoAvaliar, AvaliacaoServico avaliacao) {
 		for (AvaliacaoServico aval: servicoAvaliar.getAvaliacoes()) {
 			if(aval.getIdUsuario().equals(avaliacao.getIdUsuario())) {

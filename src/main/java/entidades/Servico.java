@@ -6,6 +6,7 @@ import java.util.List;
 public class Servico {
 	
 	private Integer id;
+	private Usuario prestador;
 	private String nome;
 	private String categoria;
 	private Double valor;
@@ -25,6 +26,13 @@ public class Servico {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Usuario getPrestador() { return prestador; }
+
+	public void setPrestador(Usuario prestador) {
+		if (prestador.getTipoUsuario() == TipoUsuario.PrestadorDeServicos)
+			this.prestador = prestador;
 	}
 
 	public String getNome() {

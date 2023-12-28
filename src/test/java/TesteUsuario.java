@@ -1,10 +1,13 @@
+import entidades.Servico;
 import entidades.TipoUsuario;
+import negocio.ServicoNegocio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import entidades.Usuario;
 import negocio.UsuarioNegocio;
+import repositorio.ServicoRepositorio;
 import repositorio.UsuarioRepositorio;
 import service.AuthenticationService;
 import service.ValidationService;
@@ -13,6 +16,8 @@ public class TesteUsuario {
     private Usuario usuario;
     private UsuarioRepositorio usuarioRepositorio;
     private UsuarioNegocio usuarioNegocio;
+    private ServicoRepositorio servicoRepositorio;
+    private ServicoNegocio servicoNegocio;
 
     @BeforeEach
     public void init() {
@@ -30,6 +35,9 @@ public class TesteUsuario {
 
         usuarioRepositorio = new UsuarioRepositorio();
         usuarioNegocio = new UsuarioNegocio(usuarioRepositorio);
+
+        servicoRepositorio = new ServicoRepositorio();
+        servicoNegocio = new ServicoNegocio(servicoRepositorio);
     }
 
     @Test
@@ -241,6 +249,28 @@ public class TesteUsuario {
         Assertions.assertFalse(authenticationResult);
     }
 
+    @Test
+    public void usuarioPrestadorDeServicoPoderaExcluirServicosCadastrados() {
+        /**
+         * TC028 (RF008)
+         * Lucas Gomes
+         *
+         * O usuário prestador de serviços poderá excluir serviços previamente cadastrados no sistema.
+         */
+
+        Usuario usuarioPrestadorDeServicos = this.criarUsuario();
+        usuarioPrestadorDeServicos.setTipoUsuario(TipoUsuario.PrestadorDeServicos);
+
+        Servico servico = this.criarServico();
+        servico.setPrestador(usuarioPrestadorDeServicos);
+
+        this.usuarioRepositorio.inserir(usuarioPrestadorDeServicos);
+        this.servicoRepositorio.addServico(servico);
+
+        boolean removeResult = this.servicoNegocio.removerServico(servico, usuarioPrestadorDeServicos);
+        Assertions.assertTrue(removeResult);
+    }
+
     private Usuario criarUsuario() {
         
         Usuario usuario = new Usuario();
@@ -256,4 +286,19 @@ public class TesteUsuario {
 
         return usuario;
    }
+
+    private Servico criarServico() {
+
+        Servico servico = new Servico();
+
+        servico.setId(1);
+        servico.setNome("Nail Desginer");
+        servico.setCategoria("Higiene e Saúde Pessoal");
+        servico.setValor(200.00);
+        servico.setDisponibilidade("Segunda à Sábado, 08:00Hrs às 16:00Hrs");
+        servico.setRestricoes("Não trabalha com animais");
+        servico.setDiferenciais("Adultos: Alongamento de unhas, Unhas de gel, Unhas de porcelana, Unhas de fibra de vidro");
+
+        return servico;
+    }
 }
