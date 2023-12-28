@@ -219,6 +219,29 @@ public class TesteUsuario {
         Assertions.assertFalse(authenticationResult);
     }
 
+    @Test
+    public void deveFalharAoEfetuarLoginPorSenhaErrada() {
+        /**
+         * TC027 (RF005)
+         * Lucas Gomes
+         *
+         * Este caso de teste simula uma tentativa fracassada de efetuar login, onde, no momento
+         * do login, onde, no momento do login, o usuário informa uma senha incorreta para um
+         * e-mail válido (associado a uma conta armazenada).
+         */
+
+        Usuario usuarioCadastrado = this.criarUsuario();
+        this.usuarioRepositorio.inserir(usuarioCadastrado);
+
+        String emailLogin = "markdoe@exampe.com";
+        String senhaIncorreta = "MarkDOE123@";
+
+        AuthenticationService authService = new AuthenticationService(this.usuarioRepositorio);
+        boolean authenticationResult = authService.authenticate(emailLogin, senhaIncorreta);
+
+        Assertions.assertFalse(authenticationResult);
+    }
+
     private Usuario criarUsuario() {
         
         Usuario usuario = new Usuario();
