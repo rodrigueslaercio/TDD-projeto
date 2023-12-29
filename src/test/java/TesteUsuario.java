@@ -1,3 +1,4 @@
+import entidades.CarrinhoCompras;
 import entidades.Servico;
 import entidades.TipoUsuario;
 import negocio.ServicoNegocio;
@@ -11,6 +12,8 @@ import repositorio.ServicoRepositorio;
 import repositorio.UsuarioRepositorio;
 import service.AuthenticationService;
 import service.ValidationService;
+
+import java.util.List;
 
 public class TesteUsuario {
     private Usuario usuario;
@@ -269,6 +272,49 @@ public class TesteUsuario {
 
         boolean removeResult = this.servicoNegocio.removerServico(servico, usuarioPrestadorDeServicos);
         Assertions.assertTrue(removeResult);
+    }
+
+    @Test
+    public void usuarioPossuiCarrinhoDeCompras() {
+        /**
+         * TC029 (RF011)
+         * Lucas Gomes
+         *
+         * De acordo com o requisito, o usuário (Tomador de Serviço) poderá ter um carrinho que funcionará
+         * de maneira similar a um carrinho de compras de e-commerce. Neste carrinho o usuário poderá incluir
+         * todos os serviços que deseja para então contratar. Além disso o requisito especifica também que
+         * o usuário poderá remover serviços deste carrinho. Nesse caso, vamos testar as funcionalidades
+         * de inserção e remoção de serviços no carrinho de serviços.
+         */
+
+        Usuario usuarioTomadorDeServicos = this.criarUsuario();
+        usuarioTomadorDeServicos.setTipoUsuario(TipoUsuario.TomadorDeServicos);
+
+        Servico servico1 = this.criarServico();
+        servico1.setId(1);
+        servico1.setNome("Nail Designer");
+
+        Servico servico2 = this.criarServico();
+        servico2.setId(2);
+        servico2.setNome("Mario Encanamentos");
+
+        Servico servico3 = this.criarServico();
+        servico3.setId(3);
+        servico3.setNome("Conserto de Televisão");
+
+        usuarioTomadorDeServicos.getCarrinhoCompras().add(servico1);
+        usuarioTomadorDeServicos.getCarrinhoCompras().add(servico2);
+        usuarioTomadorDeServicos.getCarrinhoCompras().add(servico3);
+
+        usuarioTomadorDeServicos.getCarrinhoCompras().remove(servico2);
+
+        CarrinhoCompras userCart = usuarioTomadorDeServicos.getCarrinhoCompras();
+        boolean emptyCart = userCart.getAllServices().isEmpty();
+
+        Assertions.assertFalse(emptyCart);
+        Assertions.assertTrue(userCart.contains(servico1));
+        Assertions.assertFalse(userCart.contains(servico2));
+        Assertions.assertTrue(userCart.contains(servico3));
     }
 
     private Usuario criarUsuario() {

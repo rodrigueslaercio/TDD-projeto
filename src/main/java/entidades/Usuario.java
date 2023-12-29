@@ -10,10 +10,13 @@ public class Usuario {
     private String endereco;
     private String email;
     private String senha;
-
     private String celular;
-
     private TipoUsuario tipoUsuario;
+    private CarrinhoCompras carrinhoCompras;
+
+    public Usuario() {
+        this.carrinhoCompras = new CarrinhoCompras();
+    }
 
     public String getNome() {
         return nome;
@@ -93,5 +96,9 @@ public class Usuario {
 
     public void setTipoUsuario(TipoUsuario tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public CarrinhoCompras getCarrinhoCompras() {
+        return carrinhoCompras;
     }
 }
