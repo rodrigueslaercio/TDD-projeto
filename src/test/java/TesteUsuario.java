@@ -1,16 +1,14 @@
-import entidades.CarrinhoCompras;
-import entidades.Servico;
-import entidades.TipoUsuario;
+import entidades.*;
 import negocio.ServicoNegocio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import entidades.Usuario;
 import negocio.UsuarioNegocio;
 import repositorio.ServicoRepositorio;
 import repositorio.UsuarioRepositorio;
 import service.AuthenticationService;
+import service.OrderService;
 import service.ValidationService;
 
 import java.util.List;
@@ -315,6 +313,43 @@ public class TesteUsuario {
         Assertions.assertTrue(userCart.contains(servico1));
         Assertions.assertFalse(userCart.contains(servico2));
         Assertions.assertTrue(userCart.contains(servico3));
+    }
+
+    @Test
+    public void finalizaOrdemDeServico() {
+        /**
+         * TC030 (RF011)
+         * Lucas Gomes
+         *
+         * Neste caso ambos usuários envolvidos (tomador e prestador de serviços) finalizam a
+         * ordem de serviços, liberando assim, o faturamento para o usuário prestador de
+         * serviços.
+         */
+
+        Usuario usuarioPrestadorDeServico = this.criarUsuario();
+        Usuario usuarioTomadorDeServico   = this.criarUsuario();
+
+        usuarioPrestadorDeServico.setNome("Lorena Pietra Campos");
+        usuarioPrestadorDeServico.setTipoUsuario(TipoUsuario.PrestadorDeServicos);
+
+        usuarioTomadorDeServico.setNome("Silvana Elza Allana Campos");
+        usuarioTomadorDeServico.setTipoUsuario(TipoUsuario.TomadorDeServicos);
+
+        Servico servico = this.criarServico();
+        servico.setId(1);
+        servico.setNome("Mario Encanamentos");
+        servico.setPrestador(usuarioPrestadorDeServico);
+        servico.setTomador(usuarioTomadorDeServico);
+
+        usuarioRepositorio.inserir(usuarioPrestadorDeServico);
+        usuarioRepositorio.inserir(usuarioTomadorDeServico);
+        servicoRepositorio.addServico(servico);
+
+        OrderService orderService = new OrderService(servico);
+        double valor = orderService.faturamento();
+
+        Assertions.assertTrue(servico.getStatus() == ServicoStatus.FINALIZADO);
+        Assertions.assertEquals(valor, servico.getValor());
     }
 
     private Usuario criarUsuario() {
