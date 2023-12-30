@@ -14,6 +14,7 @@ import service.ValidationService;
 import java.util.List;
 
 public class TesteUsuario {
+
     private Usuario usuario;
     private UsuarioRepositorio usuarioRepositorio;
     private UsuarioNegocio usuarioNegocio;
@@ -350,6 +351,34 @@ public class TesteUsuario {
 
         Assertions.assertTrue(servico.getStatus() == ServicoStatus.FINALIZADO);
         Assertions.assertEquals(valor, servico.getValor());
+    }
+
+    @Test
+    public void usuarioTomadorDeServicosPossuiFavoritos() {
+        /**
+         * TC031 (RF017)
+         * Lucas Gomes
+         *
+         * O sistema irá disponibilizar a opção dos anúncios favoritos do Tomador. O "favorito"
+         * pode ser dado tanto na pesquisa quanto pela visualização das Ordens de Serviço.
+         * Favorito por ordem de serviço no momento da contratação do serviço.
+         */
+
+        Usuario tomadorDeServicos = this.criarUsuario();
+        tomadorDeServicos.setNome("Sueli Allana Corte Real");
+
+        Usuario prestadorDeServicos1 = this.criarUsuario();
+        prestadorDeServicos1.setNome("Manuel Márcio Pedro Henrique Almada");
+
+        Usuario prestadorDeServicos2 = this.criarUsuario();
+        prestadorDeServicos2.setNome("Carlos Eduardo Igor Costa");
+
+        tomadorDeServicos.adicionarFavorito(prestadorDeServicos1);
+        tomadorDeServicos.adicionarFavorito(prestadorDeServicos2);
+
+        Assertions.assertFalse(tomadorDeServicos.getFavoritos().isEmpty());
+        Assertions.assertTrue(tomadorDeServicos.getFavoritos().contains(prestadorDeServicos1));
+        Assertions.assertTrue(tomadorDeServicos.getFavoritos().contains(prestadorDeServicos2));
     }
 
     private Usuario criarUsuario() {

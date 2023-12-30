@@ -1,5 +1,8 @@
 package entidades;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Usuario {
 
     private String nome;
@@ -13,9 +16,11 @@ public class Usuario {
     private String celular;
     private TipoUsuario tipoUsuario;
     private CarrinhoCompras carrinhoCompras;
+    private List<Usuario> favoritos;
 
     public Usuario() {
         this.carrinhoCompras = new CarrinhoCompras();
+        this.favoritos = new ArrayList<>();
     }
 
     public String getNome() {
@@ -100,5 +105,11 @@ public class Usuario {
 
     public CarrinhoCompras getCarrinhoCompras() {
         return carrinhoCompras;
+    }
+
+    public List<Usuario> getFavoritos() { return favoritos; }
+
+    public void adicionarFavorito(Usuario favorito) {
+        this.favoritos.add(favorito);
     }
 }
