@@ -2,11 +2,11 @@ package service;
 
 public class ValidationService {
 
-  public static boolean validarEmail(String email) {
+  public static boolean validateEmail(String email) {
     return true;
   }
 
-  public static boolean validarNumeroTelefone(String numeroTelefone) {
+  public static boolean validatePhoneNumber(String phoneNumber) {
     return true;
   }
 }

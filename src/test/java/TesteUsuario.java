@@ -175,7 +175,7 @@ public class TesteUsuario {
         usuarioAtualizado.setNome(novoNome);
         usuarioAtualizado.setEmail(novoEmail);
 
-        if (ValidationService.validarEmail(novoEmail)) {
+        if (ValidationService.validateEmail(novoEmail)) {
 
             int indiceUsuario = this.usuarioRepositorio.obterIndice(usuarioOriginal);
             this.usuarioRepositorio.atualizar(indiceUsuario, usuarioAtualizado);
