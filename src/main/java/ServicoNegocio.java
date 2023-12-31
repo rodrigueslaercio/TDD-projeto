@@ -1,11 +1,6 @@
-package negocio;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import entidades.*;
-import repositorio.ServicoRepositorio;
 
 public class ServicoNegocio {
 	

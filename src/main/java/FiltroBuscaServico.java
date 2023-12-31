@@ -1,5 +1,3 @@
-package entidades;
-
 public class FiltroBuscaServico {
 	
 	private String nome;

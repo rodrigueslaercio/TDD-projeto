@@ -1,8 +1,3 @@
-package service;
-
-import entidades.Usuario;
-import repositorio.UsuarioRepositorio;
-
 public class AuthenticationService {
 
   private final UsuarioRepositorio usuarioRepositorio;

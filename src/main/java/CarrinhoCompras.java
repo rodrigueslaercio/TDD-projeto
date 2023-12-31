@@ -1,5 +1,3 @@
-package entidades;
-
 import lombok.Data;
 
 import java.util.ArrayList;

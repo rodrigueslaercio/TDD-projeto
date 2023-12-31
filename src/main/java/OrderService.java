@@ -1,7 +1,3 @@
-package service;
-
-import entidades.Servico;
-import entidades.ServicoStatus;
 import lombok.Data;
 
 @Data

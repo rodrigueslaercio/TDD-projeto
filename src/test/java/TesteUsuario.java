@@ -1,17 +1,6 @@
-import entidades.*;
-import negocio.ServicoNegocio;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import negocio.UsuarioNegocio;
-import repositorio.ServicoRepositorio;
-import repositorio.UsuarioRepositorio;
-import service.AuthenticationService;
-import service.OrderService;
-import service.ValidationService;
-
-import java.util.List;
 
 public class TesteUsuario {
 

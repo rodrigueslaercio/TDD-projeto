@@ -1,5 +1,3 @@
-package entidades;
-
 public class AvaliacaoServico {
 	
 	private Integer rate;

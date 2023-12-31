@@ -1,5 +1,3 @@
-package service;
-
 public class ValidationService {
 
   public static boolean validateEmail(String email) {

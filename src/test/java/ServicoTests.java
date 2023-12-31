@@ -5,12 +5,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import entidades.AvaliacaoServico;
-import entidades.FiltroBuscaServico;
-import entidades.Servico;
-import negocio.ServicoNegocio;
-import repositorio.ServicoRepositorio;
-
 public class ServicoTests {
 	ServicoRepositorio sr;
 	ServicoNegocio sn;
