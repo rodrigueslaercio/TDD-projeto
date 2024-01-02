@@ -36,7 +36,7 @@ public class UsuarioNegocio {
             return null;
         }
 
-        usuario.setTipo(Tipo.Tomador);
+        usuario.setTipoUsuario(TipoUsuario.TomadorDeServicos);
         this.usuarioRepositorio.inserir(usuario);
         return  usuario;
     }

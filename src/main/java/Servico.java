@@ -4,6 +4,9 @@ import java.util.List;
 public class Servico {
 	
 	private Integer id;
+	private Usuario prestador;
+	private Usuario tomador;
+	private ServicoStatus status;
 	private String nome;
 	private String categoria;
 	private Double valor;
@@ -16,8 +19,9 @@ public class Servico {
 	private List<AvaliacaoServico> avaliacoes;
 	
 	public Servico() {
-		// TODO Auto-generated constructor stub
+
 		this.avaliacoes = new ArrayList<>();
+		this.status = ServicoStatus.ABERTO;
 	}
 
 	public Integer getId() {
@@ -27,6 +31,24 @@ public class Servico {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
+	public Usuario getPrestador() { return prestador; }
+
+	public void setPrestador(Usuario prestador) {
+		if (prestador.getTipoUsuario() == TipoUsuario.PrestadorDeServicos)
+			this.prestador = prestador;
+	}
+
+	public Usuario getTomador() { return tomador; }
+
+	public void setTomador(Usuario tomador) {
+		if (tomador.getTipoUsuario() == TipoUsuario.TomadorDeServicos)
+			this.tomador = tomador;
+	}
+
+	public ServicoStatus getStatus() { return status; }
+
+	public void setStatus(ServicoStatus status) { this.status = status; }
 
 	public String getNome() {
 		return nome;

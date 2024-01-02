@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Usuario {
 
     private String nome;
@@ -8,10 +11,15 @@ public class Usuario {
     private String endereco;
     private String email;
     private String senha;
-
     private String celular;
+    private TipoUsuario tipoUsuario;
+    private CarrinhoCompras carrinhoCompras;
+    private List<Usuario> favoritos;
 
-    private Tipo tipo;
+    public Usuario() {
+        this.carrinhoCompras = new CarrinhoCompras();
+        this.favoritos = new ArrayList<>();
+    }
 
     public String getNome() {
         return nome;
@@ -85,13 +93,21 @@ public class Usuario {
         this.celular = celular;
     }
 
-    public Tipo getTipo() {
-        return tipo;
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
     }
 
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
+    public CarrinhoCompras getCarrinhoCompras() {
+        return carrinhoCompras;
+    }
 
+    public List<Usuario> getFavoritos() { return favoritos; }
+
+    public void adicionarFavorito(Usuario favorito) {
+        this.favoritos.add(favorito);
+    }
 }
