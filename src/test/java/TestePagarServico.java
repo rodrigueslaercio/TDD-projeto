@@ -44,7 +44,7 @@ public class TestePagarServico {
         usuario.setEmail("johndoe@exampe.com");
         usuario.setSenha("Johndoe123@");
         usuario.setCelular("");
-        usuario.setTipo(Tipo.None);
+        usuario.setTipoUsuario(TipoUsuario.None);
     }
 
     @Test
