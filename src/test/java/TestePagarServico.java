@@ -49,6 +49,10 @@ public class TestePagarServico {
 
     @Test
     public void pagarPixTest() {
+        /*
+            TC009(RF013)
+            Laércio Rodrigues
+        */
         PagamentoPix pagamentoPix = new PagamentoPix();
         Servico servico = sr.getServico(1);
 
@@ -63,6 +67,10 @@ public class TestePagarServico {
 
     @Test
     public void pagarCartaoTest() {
+        /*
+            TC010(RF013)
+            Laércio Rodrigues
+        */
         PagamentoCartao pagamentoCartao = new PagamentoCartao();
         Servico servico = sr.getServico(1);
 

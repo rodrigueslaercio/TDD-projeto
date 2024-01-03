@@ -32,6 +32,10 @@ public class TesteEditarServico {
 
     @Test
     public void editarServicoTest() {
+        /*
+            TC008(RF007)
+            Laércio Rodrigues
+        */
         Servico servico = sr.getServico(1);
 
         Servico servicoEditar = new Servico();

@@ -37,6 +37,7 @@ public class TesteUsuario {
             TC001(RF001)
             Laércio Rodrigues
         */
+        usuario.setTipoUsuario(TipoUsuario.TomadorDeServicos);
         Assertions.assertNotNull(usuarioNegocio.cadastrar(usuario));
 
     }
@@ -49,6 +50,7 @@ public class TesteUsuario {
         */
         usuario.setEmail("");
         usuario.setCelular("81 99999-9999");
+        usuario.setTipoUsuario(TipoUsuario.TomadorDeServicos);
 
         Assertions.assertNotNull(usuarioNegocio.cadastrar(usuario));
     }
@@ -91,6 +93,7 @@ public class TesteUsuario {
         usuario.setDataNascimento("01/01/2001");
         usuario.setEndereco("51011-00 Avenida Boa Viagem, Pina, Recife-PE");
         usuario.setEmail("markdoe@exampe.com");
+        usuario.setTipoUsuario(TipoUsuario.TomadorDeServicos);
         usuario.setSenha("Markdoe123@");
 
         Assertions.assertNull(usuarioNegocio.cadastrar(usuario2));
