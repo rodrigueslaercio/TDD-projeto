@@ -4,34 +4,16 @@ import java.util.stream.Collectors;
 
 public class ServicoNegocio {
 
-<<<<<<< HEAD
-	public boolean removerServico(Servico servico, Usuario usuarioPrestador) {
-		if (servico.getPrestador().equals(usuarioPrestador)) {
-			return this.sr.rmvServico(servico);
-		}
-
-		return false;
-	}
-
-	private Boolean validateServico(Servico servico) {
-	    if (Objects.isNull(servico.getNome()) || servico.getNome().trim().isEmpty()) {
-	        return false;
-	    }if (Objects.isNull(servico.getValor()) || !sr.getAllServicos().contains(servico)) {
-
-	    }
-	    return true;
-	}
-
-	public Boolean avaliarServico(Servico servicoAvaliar, AvaliacaoServico avaliacao) {
-		for (AvaliacaoServico aval: servicoAvaliar.getAvaliacoes()) {
-			if(aval.getIdUsuario().equals(avaliacao.getIdUsuario())) {
-				return false;
-			}
-		}
-		return sr.addAvaliacao(servicoAvaliar, avaliacao);
-	}
-=======
     private ServicoRepositorio sr;
+
+    public boolean removerServico(Servico servico, Usuario usuarioPrestador) {
+
+        if (servico.getPrestador().equals(usuarioPrestador)) {
+          return this.sr.rmvServico(servico);
+        }
+
+        return false;
+	  }
 
     public ServicoNegocio(ServicoRepositorio sr) {
         this.sr = sr;
@@ -140,6 +122,4 @@ public class ServicoNegocio {
         }
         return sr.addAvaliacao(servicoAvaliar, avaliacao);
     }
->>>>>>> 5cd14aed938a15f43a5503d29c8b6d61eb67ec20
-
 }
